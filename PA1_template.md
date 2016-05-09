@@ -106,8 +106,8 @@ Replacing with the mean value for the respective interval; added a data frame co
 activity_nona <- merge(activity, daily_average, by = "interval") %>%  
                    arrange(date, interval)
 na_steps <- which(is.na(activity_nona$steps) == TRUE)
-for (i in na_steps)
-  activity_nona[i, ]$steps <- as.integer(activity_nona[i, ]$avg_steps)
+activity_nona[na_steps, ]$steps <-
+  as.integer(activity_nona[na_steps, ]$avg_steps)
 
 summary(activity$steps)
 ```

@@ -286,8 +286,8 @@ daily_average &lt;- activity %&gt;%
 <pre><code class="r">activity_nona &lt;- merge(activity, daily_average, by = &quot;interval&quot;) %&gt;%  
                    arrange(date, interval)
 na_steps &lt;- which(is.na(activity_nona$steps) == TRUE)
-for (i in na_steps)
-  activity_nona[i, ]$steps &lt;- as.integer(activity_nona[i, ]$avg_steps)
+activity_nona[na_steps, ]$steps &lt;-
+  as.integer(activity_nona[na_steps, ]$avg_steps)
 
 summary(activity$steps)
 </code></pre>
